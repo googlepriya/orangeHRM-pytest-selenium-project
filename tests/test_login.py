@@ -3,7 +3,6 @@ import pytest
 from selenium import webdriver
 import time
 
-@pytest.mark.skip
 def setup():
     #Initialize the webdriver
     driver = webdriver.Chrome()
@@ -11,6 +10,7 @@ def setup():
     driver.implicitly_wait(10)
     yield driver
 
+@pytest.fixture
 def test_login_valid(setup):
     driver = setup
     driver.get("https://opensource-demo.orangehrmlive.com/")

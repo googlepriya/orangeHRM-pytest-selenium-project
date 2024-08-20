@@ -31,17 +31,11 @@ def test_add_employee(setup):
     time.sleep(4)
 
     # Validate that the employee was added by searching for the employee
-    employee_page.search_and_delete_employee("Ria Dhomas")
+    employee_page.search_employee("Ria Dhomas")
     time.sleep(4)
 
-    #search_result = driver.find_element(By.XPATH,"//div[contains(text(), 'Ria ')]").text
-    #assert "Ria" in search_result
-
-"""
-def test_search_employee(setup):
-    driver = setup
-    employee_page = PimEmployeeListPage(driver)
-    employee_page.search_employee
+    search_result = driver.find_element(By.XPATH,"//div[contains(text(), 'Ria ')]").text
+    assert "Ria" in search_result
 
 
 def test_delete_employee(setup):
@@ -56,9 +50,17 @@ def test_delete_employee(setup):
     dashboard_page = DashboardPage(driver)
     dashboard_page.navigate_to_pim_menu()
 
-    # Search Employee
+    #Searching  the employee
     employee_page = PimEmployeeListPage(driver)
-    employee_page.search_and_delete_employee("Ria Dhomas")
-    
-  """
+    employee_page.search_employee("Ria Dhomas")
+    time.sleep(4)
+
+    #Delete the Employee
+    employee_page.delete_employee()
+
+    #Validate the employee record is deleted
+    time.sleep(2)
+    no_records_text = driver.find_element(By.XPATH,"//span[text()='No Records Found']").text
+    assert "No Records Found" in no_records_text
+
   

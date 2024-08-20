@@ -4,13 +4,13 @@ from pages.login_page import LoginPage
 from pages.dashboard_page import DashboardPage  
 import time
 
-@pytest.mark.skip
 def setup():
     driver = webdriver.Chrome()
     driver.maximize_window()
     driver.implicitly_wait(10)
     yield driver
 
+@pytest.fixture
 def test_dashboard(setup):
     driver = setup
     driver.get("https://opensource-demo.orangehrmlive.com/")
