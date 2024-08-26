@@ -37,6 +37,25 @@ def test_add_employee(setup):
     search_result = driver.find_element(By.XPATH,"//div[contains(text(), 'Ria ')]").text
     assert "Ria" in search_result
 
+def test_update_employee(setup):
+    driver = setup
+    driver.get("https://opensource-demo.orangehrmlive.com/")
+
+    #Login
+    login_page = LoginPage(driver)
+    login_page.login("Admin","admin123")
+
+    #Navigate to PIM
+    dashboard_page = DashboardPage(driver)
+    dashboard_page.navigate_to_pim_menu()
+
+    #Searching the employee
+    employee_page = PimEmployeeListPage(driver)
+    employee_page.search_employee("Fatima  munavar")
+    time.sleep(3)
+
+    #Update the employee profile 
+    employee_page.update_employee()
 
 def test_delete_employee(setup):
     driver = setup

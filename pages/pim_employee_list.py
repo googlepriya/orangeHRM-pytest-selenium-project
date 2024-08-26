@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.common.keys import Keys
 class PimEmployeeListPage:
     def __init__(self,driver):
         self.driver = driver
@@ -12,7 +12,7 @@ class PimEmployeeListPage:
         self.search_button = (By.XPATH,"(//button)[6]")
         self.delete_button = (By.XPATH,"(//button[@type='button'])[7]")
         self.delete_confirm_button = (By.XPATH,"(//button[@type='button'])[9]")
-    
+        
     def add_employee(self, first_name,last_name):
         self.driver.find_element(*self.add_employee_button).click()
         self.driver.find_element(*self.first_name).send_keys(first_name)
@@ -27,7 +27,5 @@ class PimEmployeeListPage:
     def delete_employee(self):
         self.driver.find_element(*self.delete_button).click()
         self.driver.find_element(*self.delete_confirm_button).click()
-  
-
     
 
